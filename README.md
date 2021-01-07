@@ -1,6 +1,6 @@
 # Infrastructure as Code for guotiexin.com
 
-This is the infrastructure as code part for the website "guotiexin.com", which is yet another website simply powered by WordPress.
+This is the infrastructure as code part for the website [guotiexin.com](https://www.guotiexin.com), which is yet another website simply powered by WordPress.
 
 It's not simple though:
 
