@@ -1,0 +1,5 @@
+clusterName: tiexin
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::391996659322:role/load-balancer-controller-role"

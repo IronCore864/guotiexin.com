@@ -1,0 +1,30 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: tiexin
+  region: eu-central-1
+
+vpc:
+  subnets:
+    private:
+      eu-central-1a: { id: subnet-02826e7981cee1583 }
+      eu-central-1b: { id: subnet-0f0a831c5649a3d3f }
+      eu-central-1c: { id: subnet-010f9454a7bf512fe }
+
+managedNodeGroups:
+  - name: tiexin-managed-ng-1
+    instanceType: m5.xlarge
+    privateNetworking: true
+    minSize: 2
+    maxSize: 4
+    desiredCapacity: 2
+    ssh:
+      allow: false
+    labels: {role: worker}
+    tags:
+      nodegroup-role: worker
+    iam:
+      withAddonPolicies:
+        externalDNS: true
+        certManager: true

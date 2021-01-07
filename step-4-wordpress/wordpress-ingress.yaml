@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: wordpress
+  name: wordpress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    external-dns.alpha.kubernetes.io/hostname: "<your-wanted-alb-host-name-here>"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: default
+    alb.ingress.kubernetes.io/certificate-arn: <your-cert-arn-here>
+    alb.ingress.kubernetes.io/wafv2-acl-arn: <your-wafv2-acl-arn-here>
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/actions.redirect-to-www: >
+      {"Type": "redirect", "redirectConfig": {"Host":"www.guotiexin.com", "Port":"443", "Protocol":"HTTPS", "StatusCode":"HTTP_301"}}
+    alb.ingress.kubernetes.io/actions.only-allow-with-custom-header: >
+      {"type": "forward", "forwardConfig": {"targetGroups": [{"serviceName": "wordpress", "servicePort": "http"}]}}
+    alb.ingress.kubernetes.io/conditions.only-allow-with-custom-header: >
+      [{"field": "http-header", "httpHeaderConfig": {"httpHeaderName": "X-Custom-Header", "values": ["<your-secret-here>"]}}]
+spec:
+  rules:
+    - host: www.guotiexin.com
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: only-allow-with-custom-header
+              servicePort: use-annotation
+    - host: guotiexin.com
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: redirect-to-www
+              servicePort: use-annotation
