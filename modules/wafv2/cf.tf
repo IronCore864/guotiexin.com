@@ -38,12 +38,20 @@ resource "aws_wafv2_web_acl" "cf_managed_rules_default" {
     name     = "AWSManagedRulesCommonRuleSet"
     priority = 2
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
         name        = "AWSManagedRulesCommonRuleSet"
         vendor_name = "AWS"
+        # blocking wordpress autosave
+        excluded_rule {
+          name = "CrossSiteScripting_BODY"
+        }
+
+        excluded_rule {
+          name = "GenericRFI_BODY"
+        }
       }
     }
 
@@ -78,12 +86,15 @@ resource "aws_wafv2_web_acl" "cf_managed_rules_default" {
     name     = "AWSManagedRulesWordPressRuleSet"
     priority = 4
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
         name        = "AWSManagedRulesWordPressRuleSet"
         vendor_name = "AWS"
+        excluded_rule {
+          name = "WordPressExploitablePaths_URIPATH"
+        }
       }
     }
 

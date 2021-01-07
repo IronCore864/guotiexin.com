@@ -31,18 +31,26 @@ resource "aws_wafv2_web_acl" "regional_managed_rules_default" {
     name     = "AWSManagedRulesCommonRuleSet"
     priority = 2
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
         name        = "AWSManagedRulesCommonRuleSet"
         vendor_name = "AWS"
+        # blocking wordpress autosave
+        excluded_rule {
+          name = "CrossSiteScripting_BODY"
+        }
+
+        excluded_rule {
+          name = "GenericRFI_BODY"
+        }
       }
     }
 
     visibility_config {
       cloudwatch_metrics_enabled = true
-      metric_name                = "waf-regional-rule-aws-common-rule"
+      metric_name                = "waf-cf-rule-aws-common-rule"
       sampled_requests_enabled   = true
     }
   }
@@ -71,18 +79,21 @@ resource "aws_wafv2_web_acl" "regional_managed_rules_default" {
     name     = "AWSManagedRulesWordPressRuleSet"
     priority = 4
     override_action {
-      none {}
+      count {}
     }
     statement {
       managed_rule_group_statement {
         name        = "AWSManagedRulesWordPressRuleSet"
         vendor_name = "AWS"
+        excluded_rule {
+          name = "WordPressExploitablePaths_URIPATH"
+        }
       }
     }
 
     visibility_config {
       cloudwatch_metrics_enabled = true
-      metric_name                = "waf-regional-rule-aws-wordpress"
+      metric_name                = "waf-cf-rule-aws-wordpress"
       sampled_requests_enabled   = true
     }
   }
