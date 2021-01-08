@@ -6,6 +6,13 @@ terraform {
       source  = "hashicorp/aws"
     }
   }
+  backend "s3" {
+    bucket         = "tf-state-391996659322"
+    key            = "terraform.tfstate"
+    region         = "eu-central-1"
+    encrypt        = true
+    dynamodb_table = "tf_state_lock_391996659322"
+  }
 }
 
 provider "aws" {
