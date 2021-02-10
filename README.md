@@ -12,7 +12,7 @@ It's not simple though:
 - DNS is managed by route 53 and automatically by external-dns.
 - For ingress we use the latest AWS load balancer controller. If you don't know how to use it yet, see my [medium post here](https://medium.com/devops-dudes/running-the-latest-aws-load-balancer-controller-in-your-aws-eks-cluster-9d59cdc1db98).
 - SSL certs are managed by AWS Certificate Manager.
-- Both CloudFront and global accelerator are used.
+- CloudFront is used for global content delivery, and the origin is a Global Accelerator, instead of a load balancer. The Global Accelerator accelerates the load from ALB, then the ALB goes to K8s ingress.
 - Done by Terraform with reusable modules and detailed READMEs, with secrets fetched from AWS Secrets Manager. No secret is stored in any git repo during the construction of this website.
 
 You can probably do better than this for a WordPress blog, but probably by not much.
