@@ -33,7 +33,7 @@ resource "aws_cloudfront_distribution" "alb_distribution" {
   comment             = "Some comment"
   default_root_object = ""
 
-  aliases = ["guotiexin.com", "www.guotiexin.com"]
+  aliases = ["guotiexin.com", "www.guotiexin.com", "argocd.guotiexin.com"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
