@@ -1,2 +1,2 @@
 eks_oidc_provider_url = "https://oidc.eks.eu-central-1.amazonaws.com/id/xxx"
-eks_alb_arn           = "arn:aws:elasticloadbalancing:eu-central-1:123456789:loadbalancer/app/k8s-default-xxx/yyy"
+eks_alb_dns           = "k8s-default-xxx.eu-central-1.elb.amazonaws.com"

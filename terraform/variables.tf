@@ -38,6 +38,6 @@ variable "eks_oidc_provider_url" {
   type = string
 }
 
-variable "eks_alb_arn" {
+variable "eks_alb_dns" {
   type = string
 }

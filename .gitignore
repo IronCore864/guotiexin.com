@@ -3,3 +3,4 @@
 **/terraform.tfstate*
 **/terraform.tfvars
 **/*.tiexin.*
+**/.DS_Store

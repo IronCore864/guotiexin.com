@@ -37,15 +37,9 @@ module "external-dns-role" {
   oidc_provider = var.eks_oidc_provider_url
 }
 
-module "global-accelerator" {
-  source = "../modules/global-accelerator"
-
-  alb_arn = var.eks_alb_arn
-}
-
 module "wordpress-cf" {
   source = "../modules/cloudfront"
 
   web_acl_id         = module.waf.waf_cf_web_acl_arn
-  origin_domain_name = module.global-accelerator.dns_name
+  origin_domain_name = var.eks_alb_dns
 }

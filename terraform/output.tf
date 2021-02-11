@@ -9,7 +9,3 @@ output "external_dns_role_arn" {
 output "waf_regional_web_acl_arn" {
   value = module.waf.waf_regional_web_acl_arn
 }
-
-output "global_accelerator_dns_name" {
-  value = module.global-accelerator.dns_name
-}
