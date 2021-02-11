@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: argocd
+  name: argocd
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: default 
+    alb.ingress.kubernetes.io/load-balancer-attributes: routing.http2.enabled=true
+    alb.ingress.kubernetes.io/certificate-arn: YOUR_ACM_CERT_ARN_HERE
+    alb.ingress.kubernetes.io/wafv2-acl-arn: YOUR_WAV_V2_ACL_ARN_HERE
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+spec:
+  rules:
+    - host: argocd.guotiexin.com
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: argocd-server
+              servicePort: http
