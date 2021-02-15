@@ -4,3 +4,8 @@
 **/terraform.tfvars
 **/*.tiexin.*
 **/.DS_Store
+**/issuer.crt
+**/issuer.key
+**/root.crt
+**/root.key
+
