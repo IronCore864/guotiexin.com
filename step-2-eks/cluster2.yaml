@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: tiexin
+  name: tiexin2
   region: eu-central-1
 
 vpc:
@@ -13,7 +13,7 @@ vpc:
       eu-central-1c: { id: subnet-010f9454a7bf512fe }
 
 managedNodeGroups:
-  - name: tiexin-managed-ng
+  - name: tiexin2-managed-ng-1
     instanceType: m5.xlarge
     privateNetworking: true
     minSize: 2
@@ -24,7 +24,3 @@ managedNodeGroups:
     labels: {role: worker}
     tags:
       nodegroup-role: worker
-    iam:
-      withAddonPolicies:
-        externalDNS: true
-        certManager: true
