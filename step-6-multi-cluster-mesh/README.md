@@ -60,7 +60,7 @@ for ctx in tiexin tiexin2; do
 done
 ```
 
-*NOTE for private clusters:* if both your clusters are in the same VPC and subnets and can talk to each other and you don't want the linkerd gateway traffic to go through public internet, you can change the load balancer to internal, by editing `svc/linkerd-gateway` in `linkerd-multicluster` namespace and adding an annotation: `service.beta.kubernetes.ioaws-load-balancer-internal: "true"`.
+*NOTE for private clusters:* if both your clusters are in the same VPC and subnets and can talk to each other and you don't want the linkerd gateway traffic to go through public internet, you can change the load balancer to internal, by editing `svc/linkerd-gateway` in `linkerd-multicluster` namespace and adding an annotation: `service.beta.kubernetes.io/aws-load-balancer-internal: "true"`.
 
 Optional: to verify the install:
 
