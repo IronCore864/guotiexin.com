@@ -25,19 +25,25 @@ module "waf" {
   source = "../modules/wafv2"
 }
 
-module "load-balancer-controller-role" {
-  source = "../modules/load-balancer-controller-role"
+module "load_balancer_controller_role" {
+  source = "../modules/load_balancer_controller_role"
 
   oidc_provider = var.eks_oidc_provider_url
 }
 
-module "external-dns-role" {
-  source = "../modules/external-dns-role"
+module "external_dns_role" {
+  source = "../modules/external_dns_role"
 
   oidc_provider = var.eks_oidc_provider_url
 }
 
-module "wordpress-cf" {
+module "external_secrets_role" {
+  source = "../modules/external_secrets_role"
+
+  oidc_provider = var.eks_oidc_provider_url
+}
+
+module "wordpress" {
   source = "../modules/cloudfront"
 
   web_acl_id         = module.waf.waf_cf_web_acl_arn
