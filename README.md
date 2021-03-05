@@ -50,4 +50,6 @@ Done by Terraform with reusable modules with detailed READMEs.
 
 I separated the infrastructure into multiple steps because I want to clearly document how is everything created. In the real world, it can be done via one pipeline.
 
+**In general, all my Terraform modules obey the zero-overhead principle: What you don’t use, you don’t pay for. And further: What you do use, you couldn’t hand code any better.**
+
 You can probably do better than this for a WordPress blog, but probably by not much.
