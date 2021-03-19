@@ -1,3 +1,7 @@
+# Not In Use Any More as of 19.03.2021
+
+Migrating from K8s to GitHub pages with Jekyll.
+
 # Infrastructure as Code for guotiexin.com
 
 This is the infrastructure as code part for the website [guotiexin.com](https://www.guotiexin.com), which is yet another website simply powered by WordPress.
